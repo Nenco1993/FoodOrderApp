@@ -2,8 +2,9 @@ package com.example.neven.foodorderapp.food
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class Meal {
+class Meal : Serializable {
 
     @SerializedName("idMeal")
     @Expose

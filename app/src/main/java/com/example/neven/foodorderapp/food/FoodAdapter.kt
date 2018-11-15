@@ -6,13 +6,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.neven.foodorderapp.R
 import com.example.neven.foodorderapp.databinding.ListItemFoodBinding
+import com.jakewharton.rxbinding.view.RxView
 
 class FoodAdapter : RecyclerView.Adapter<FoodViewHolder>() {
 
     var listMeals: List<Meal> = ArrayList()
+    lateinit var listener: OnFoodClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
-        val binding: ListItemFoodBinding = DataBindingUtil.inflate<ListItemFoodBinding>(LayoutInflater.from(parent.context), R.layout.list_item_food, parent, false)
+        val binding: ListItemFoodBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.list_item_food, parent, false)
         return FoodViewHolder(binding)
     }
 
@@ -21,13 +23,28 @@ class FoodAdapter : RecyclerView.Adapter<FoodViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
-        holder.mBinding.meal = listMeals[position]
+        val singleMeal = listMeals[position]
+        holder.mBinding.meal = singleMeal
+        RxView.clicks(holder.itemView)
+                .subscribe {
+                    listener.onFoodClicked(singleMeal)
+                }
     }
 
-    fun setData(food: Food?) {
+    fun setData(meals: List<Meal>?) {
         if (listMeals.isEmpty()) {
-            listMeals = food?.meals!!
-            notifyItemRangeInserted(0, listMeals.size)
+            meals?.let {
+                listMeals = it
+                notifyDataSetChanged()
+            }
         }
+    }
+
+    fun setOnFoodClickListener(listener: OnFoodClickListener) {
+        this.listener = listener
+    }
+
+    interface OnFoodClickListener {
+        fun onFoodClicked(meal: Meal)
     }
 }

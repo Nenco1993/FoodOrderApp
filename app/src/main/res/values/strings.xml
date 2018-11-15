@@ -2,4 +2,7 @@
     <string name="app_name">FoodOrderApp</string>
     <string name="error_message">Something went wrong!</string>
     <string name="success">Got some data!</string>
+    <string name="full_name">Full name</string>
+    <string name="address">Address</string>
+    <string name="order_button">Submit order</string>
 </resources>
