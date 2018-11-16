@@ -31,7 +31,7 @@ class FoodActivity : BaseActivity(), FoodAdapter.OnFoodClickListener {
         setContentView(R.layout.activity_main)
         val viewmodel = ViewModelProviders.of(this, viewmodelFactoryFood).get(FoodViewModel::class.java)
 
-        viewmodel.getFoodLiveData()?.observe(this, Observer<List<Meal>> {
+        viewmodel.getFoodLiveData()?.observe(this, Observer {
             observeViewmodel(it)
         })
 

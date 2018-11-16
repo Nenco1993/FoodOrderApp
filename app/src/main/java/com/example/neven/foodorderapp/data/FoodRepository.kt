@@ -1,8 +1,8 @@
 package com.example.neven.foodorderapp.data
 
-import android.arch.lifecycle.LiveData
-import com.example.neven.foodorderapp.food.Meal
+import com.example.neven.foodorderapp.food.Food
+import io.reactivex.Flowable
 
 interface FoodRepository {
-    fun getFood(): LiveData<List<Meal>>
+    fun getFood(): Flowable<Food>
 }
