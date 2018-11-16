@@ -1,16 +1,13 @@
 package com.example.neven.foodorderapp.food
 
+
 import android.annotation.SuppressLint
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.example.neven.foodorderapp.data.FoodRepositoryImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
-
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-
-
 import javax.inject.Inject
 
 class FoodViewModel @Inject constructor(val repo: FoodRepositoryImpl, val compositeDisposable: CompositeDisposable) : ViewModel() {
@@ -21,7 +18,7 @@ class FoodViewModel @Inject constructor(val repo: FoodRepositoryImpl, val compos
         loadData()
     }
 
-    fun getFoodLiveData(): LiveData<List<Meal>>? {
+    fun getFoodLiveData(): MutableLiveData<List<Meal>>? {
         return liveDataMeals
     }
 
@@ -41,6 +38,7 @@ class FoodViewModel @Inject constructor(val repo: FoodRepositoryImpl, val compos
                         }
                 )
         compositeDisposable.add(disposable)
+
     }
 
     override fun onCleared() {

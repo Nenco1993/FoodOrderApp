@@ -12,6 +12,15 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+
     }
     buildTypes {
         release {
@@ -51,6 +60,8 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:1.1.1"
     implementation 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.0.0'
     implementation 'com.trello.rxlifecycle3:rxlifecycle-android-lifecycle-kotlin:3.0.0'
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+
     testImplementation 'junit:junit:4.12'
     testImplementation "android.arch.core:core-testing:1.1.1"
     testImplementation "android.arch.persistence.room:testing:1.1.1"

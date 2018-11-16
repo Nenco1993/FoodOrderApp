@@ -17,7 +17,10 @@ class FoodOrderApplication : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent.create().inject(this)
+        DaggerAppComponent.builder()
+                .setApplication(this)
+                .build()
+                .inject(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {

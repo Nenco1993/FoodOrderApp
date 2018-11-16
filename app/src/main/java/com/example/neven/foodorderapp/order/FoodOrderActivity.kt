@@ -1,13 +1,12 @@
 package com.example.neven.foodorderapp.order
 
 import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.example.neven.foodorderapp.R
 import com.example.neven.foodorderapp.base.BaseActivity
+import com.example.neven.foodorderapp.data.OrderDetails
 import com.example.neven.foodorderapp.food.FoodConstants
-import com.example.neven.foodorderapp.food.FoodViewModel
 import com.example.neven.foodorderapp.food.FoodViewmodelFactory
 import com.example.neven.foodorderapp.food.Meal
 import com.jakewharton.rxbinding.view.RxView
@@ -20,18 +19,19 @@ class FoodOrderActivity : BaseActivity() {
     @Inject
     lateinit var viewmodelFactoryFood: FoodViewmodelFactory
 
+    lateinit var viewmodel: FoodOrderViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_order)
         val meal = intent?.getSerializableExtra(FoodConstants.KEY_MEAL) as Meal
-        val viewmodel = ViewModelProviders.of(this, viewmodelFactoryFood).get(FoodOrderViewModel::class.java)
-
-
+        viewmodel = ViewModelProviders.of(this, viewmodelFactoryFood).get(FoodOrderViewModel::class.java)
 
         Glide.with(baseContext)
                 .load(meal.strMealThumb)
                 .into(ivFoodOrderPicture)
+
         setOnAddQuantityListener()
         setOnSubmitOrderClickListener()
     }
@@ -39,7 +39,12 @@ class FoodOrderActivity : BaseActivity() {
     private fun setOnSubmitOrderClickListener() {
         RxView.clicks(bFoodOrder)
                 .subscribe {
-
+                    val orderDetails = OrderDetails(
+                            etFoodOrderFullName.text.toString(),
+                            etFullOrderAddress.text.toString(),
+                            tvFoodOrderQuantity.text.toString()
+                    )
+                    viewmodel.submitOrder(orderDetails)
                 }
     }
 
