@@ -6,8 +6,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import com.example.neven.foodorderapp.R
 import com.example.neven.foodorderapp.base.BaseActivity
+import com.example.neven.foodorderapp.history.FoodOrderHistoryActivity
 import com.example.neven.foodorderapp.order.FoodOrderActivity
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,6 +42,23 @@ class FoodActivity : BaseActivity(), FoodAdapter.OnFoodClickListener {
         rvFood.itemAnimator = DefaultItemAnimator()
         adapter = FoodAdapter()
         rvFood.adapter = adapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.history -> {
+                val intent = Intent(baseContext, FoodOrderHistoryActivity::class.java)
+                startActivity(intent)
+            }
+
+        }
+        return true
     }
 
     override fun onFoodClicked(meal: Meal) {

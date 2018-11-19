@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".order.FoodOrderActivity" />
+        <activity android:name=".history.FoodOrderHistoryActivity"></activity>
     </application>
 
 </manifest>

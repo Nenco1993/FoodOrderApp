@@ -2,6 +2,8 @@ package com.example.neven.foodorderapp.order
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.example.neven.foodorderapp.R
 import com.example.neven.foodorderapp.base.BaseActivity
@@ -27,13 +29,19 @@ class FoodOrderActivity : BaseActivity() {
         setContentView(R.layout.activity_food_order)
         val meal = intent?.getSerializableExtra(FoodConstants.KEY_MEAL) as Meal
         viewmodel = ViewModelProviders.of(this, viewmodelFactoryFood).get(FoodOrderViewModel::class.java)
-
         Glide.with(baseContext)
                 .load(meal.strMealThumb)
                 .into(ivFoodOrderPicture)
-
         setOnAddQuantityListener()
         setOnSubmitOrderClickListener()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setOnSubmitOrderClickListener() {

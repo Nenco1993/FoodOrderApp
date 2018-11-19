@@ -6,6 +6,7 @@ import io.reactivex.Flowable
 
 interface FoodRepository {
     fun getFood(): Flowable<Food>
-    fun saveReceipt(orderDetails: OrderDetails):Long
-
+    fun saveReceipt(orderDetails: OrderDetails): Long
+    fun getAllReceipts(): Flowable<List<OrderDetails>>
+    fun getOrdersByAddress(address:String):Flowable<List<OrderDetails>>
 }

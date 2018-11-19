@@ -12,7 +12,13 @@ interface ReceiptDao {
     @Query("SELECT * FROM orders WHERE id=:id")
     fun getReceiptById(id: Int): Flowable<OrderDetails>
 
+    @Query("SELECT * FROM orders")
+    fun getAllReceipts(): Flowable<List<OrderDetails>>
+
     @Insert
-    fun saveReceipt(orderDetails: OrderDetails):Long
+    fun saveReceipt(orderDetails: OrderDetails): Long
+
+    @Query("SELECT * FROM orders WHERE address LIKE :address")
+    fun searchByAddress(address: String): Flowable<List<OrderDetails>>
 
 }

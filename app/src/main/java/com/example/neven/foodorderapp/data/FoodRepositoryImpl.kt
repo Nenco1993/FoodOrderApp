@@ -16,4 +16,12 @@ class FoodRepositoryImpl @Inject constructor(val restAPI: RestAPI, val dbManager
     override fun saveReceipt(orderDetails: OrderDetails):Long {
         return dbManager.saveReceipt(orderDetails)
     }
+
+    override fun getAllReceipts(): Flowable<List<OrderDetails>> {
+        return dbManager.getAllReceipts()
+    }
+
+    override fun getOrdersByAddress(address:String): Flowable<List<OrderDetails>> {
+        return dbManager.getOrdersByAddress(address)
+    }
 }

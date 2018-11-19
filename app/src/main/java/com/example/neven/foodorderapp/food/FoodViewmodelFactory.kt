@@ -3,6 +3,7 @@ package com.example.neven.foodorderapp.food
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.example.neven.foodorderapp.data.FoodRepositoryImpl
+import com.example.neven.foodorderapp.history.FoodOrderHistoryViewModel
 import com.example.neven.foodorderapp.order.FoodOrderViewModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -16,6 +17,9 @@ class FoodViewmodelFactory @Inject constructor(val repo: FoodRepositoryImpl, val
         }
         if (modelClass.isAssignableFrom(FoodOrderViewModel::class.java)) {
             return FoodOrderViewModel(repo, compositeDisposable) as T
+        }
+        if (modelClass.isAssignableFrom(FoodOrderHistoryViewModel::class.java)){
+            return FoodOrderHistoryViewModel(repo,compositeDisposable) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
