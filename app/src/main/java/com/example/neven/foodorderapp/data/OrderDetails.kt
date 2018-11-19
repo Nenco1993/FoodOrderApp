@@ -8,10 +8,10 @@ import android.arch.persistence.room.PrimaryKey
 data class OrderDetails(
 
         @ColumnInfo(name = "full_name")
-        var fullName: String,
+        var fullName: String?,
 
-        val address: String,
-        var quantity: String) {
+        val address: String?,
+        var quantity: String?) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
