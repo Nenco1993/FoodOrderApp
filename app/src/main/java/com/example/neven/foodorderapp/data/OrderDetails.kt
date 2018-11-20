@@ -11,7 +11,8 @@ data class OrderDetails(
         var fullName: String?,
 
         val address: String?,
-        var quantity: String?) {
+        var quantity: String?,
+        var mealName:String?) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null

@@ -18,7 +18,7 @@ interface ReceiptDao {
     @Insert
     fun saveReceipt(orderDetails: OrderDetails): Long
 
-    @Query("SELECT * FROM orders WHERE address LIKE :address")
+    @Query("SELECT * FROM orders WHERE address LIKE :address ORDER BY full_name ASC")
     fun searchByAddress(address: String): Flowable<List<OrderDetails>>
 
 }

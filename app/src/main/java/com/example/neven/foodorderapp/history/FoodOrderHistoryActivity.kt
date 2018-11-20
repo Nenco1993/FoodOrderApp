@@ -1,6 +1,5 @@
 package com.example.neven.foodorderapp.history
 
-
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
@@ -14,10 +13,8 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_food_order_history.*
 import org.jetbrains.anko.toast
 import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 import javax.inject.Inject
 import android.support.v7.widget.DividerItemDecoration
-
 
 class FoodOrderHistoryActivity : AppCompatActivity() {
 
@@ -71,7 +68,5 @@ class FoodOrderHistoryActivity : AppCompatActivity() {
                             it.printStackTrace()
                         }
                 )
-
-
     }
 }

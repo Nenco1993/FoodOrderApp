@@ -27,6 +27,7 @@ class HistoryAdapter() : RecyclerView.Adapter<HistoryViewHolder>() {
         val address = singleOrder.address ?: "no address"
         holder.view.tvHistoryFullName.text = fullName
         holder.view.tvHistoryAddress.text = address
+        holder.view.tvHistoryMealName.text = singleOrder.mealName
     }
 
     fun addData(listHistory: List<OrderDetails>?) {
